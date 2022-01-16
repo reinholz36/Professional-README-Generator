@@ -12,3 +12,5 @@ I built a readme generator using node.js and inquirer that can be run through th
 <a href="https://github.com/reinholz36/Professional-README-Generator">
 <img src="./images/screenshot.jpg" alt="sample readme generated using the app">
 </a>
+
+Link to video demonstration: https://watch.screencastify.com/v/7v5sllOhZy8OltRcq5QM
