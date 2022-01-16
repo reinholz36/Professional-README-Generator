@@ -1,10 +1,52 @@
-// TODO: Include packages needed for this application
-
+// Packages needed for this application
+const fs = require('fs')
 const inquirer = require("inquirer");
 
-// TODO: Create an array of questions for user input
-const questions = () => {
-    return inquirer.prompt([
+// README template
+const generateMarkdown = (data) =>
+    `
+  # ${data.title}
+  
+  ![${data.license}](https://img.shields.io/badge/license-${data.license}-brightgreen)
+  
+  ## Description
+  ${data.description}
+  
+  ## Table of Contents
+  
+  * [Installation](#Installation)
+  * [Usage](#Usage)
+  * [License](#License)
+  * [Contribute](#Contribute)
+  * [Tests](#Tests)
+  * [Questions](#Questions)
+  
+  
+  ## Installation
+  ${data.installation}
+  
+  ## Usage
+  ${data.usage}
+  
+  ## License
+  ${data.license} Copyright (c) 2022 
+  
+  ## Contribute
+  ${data.contribution}
+  
+  ## Tests
+  ${data.test}
+  
+  ## Questions
+  If you have any questions about this application please email: ${data.email}
+
+  Or visit my GitHub profile: https://github.com/${data.username}
+  `;
+  
+
+// An array of questions for user input
+inquirer
+    .prompt([
         {
             type: 'input',
             name: 'title',
@@ -117,14 +159,49 @@ const questions = () => {
             }
         },
     ])
-}
-// title, description, (table of contents), installation instructions, usage information, license (select from list), contribution guidelines, github username, email address, and test instructions
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+    .then((data) => {
+        const responseData = generateMarkdown(data);
 
-// TODO: Create a function to initialize app
-function init() {}
+        fs.writeFile('README.md', responseData, (err) =>
+        err ? console.log('err on write', err) : console.log('README.md has been created!')
+        );
+    });
 
-// Function call to initialize app
-init();
+//Test sample entry Q/A
+
+// What is the tile of your project?
+
+/* Sample Project 1 */
+
+// What is the description of your project?
+
+/*Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.*/
+
+// What are the installation instructions for your project?
+
+/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */
+
+// What is the usage information for your project?
+
+/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */
+
+// Which license is used in your project?
+
+/* pick any */
+
+// What are the contribution guidelines for your project?
+
+/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */
+
+// What is your GitHub username? 
+
+/* reinholz36 */
+
+// What is your email address?
+
+/* dreinholz28@gmail.com */
+
+// What are the test instructions?
+
+/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */
